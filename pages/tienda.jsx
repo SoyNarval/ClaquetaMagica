@@ -210,14 +210,14 @@ export default function Tienda() {
       <div className='bg-black min-h-screen'>
         
           {/* barra de busqueda y compra*/}
-          <div className='w-full h-20 bg-slate-900 flex flex-row justify-between items-center sticky top-0 z-50'>
+          <div className='w-full h-20 bg-slate-900 flex flex-row justify-between items-center sticky top-0 z-50  max-md:hidden'>
             
             {/* boton lista de favoritos */}
             <div>
               <button className='flex text-white text-center text-2xl p-6 border border-transparent hover:border hover:border-white'  onClick={() => showWishListBtn()}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="2"> <path d="M9 6l11 0"></path> <path d="M9 12l11 0"></path> <path d="M9 18l11 0"></path> <path d="M5 6l0 .01"></path> <path d="M5 12l0 .01"></path> <path d="M5 18l0 .01"></path> </svg> 
               </button>
-              <ul className='absolute top-16 left-4 flex flex-col gap-4'>
+              <ul className='absolute top-14 md:top-16 md:left-4 flex flex-col '>
                 <Wishlist 
                   showWishList={showWishList}
                   wishList={wishList}
@@ -272,10 +272,10 @@ export default function Tienda() {
                   <path d="M17 17h-11v-14h-2" />
                   <path d="M6 5l14 1l-1 7h-13" />
                 </svg>
-                <p className={`absolute top-2 right-2 text-white text-center text-2xl ${list !== 0 ? 'animate-pulse, text-yellow-400' : ''}`}>{list}</p>
+                <p className={`absolute md:top-2 md:right-2 text-white text-center text-2xl ${list !== 0 ? 'animate-pulse, text-yellow-400' : ''}`}>{list}</p>
               </button>
               
-              <ul className='absolute top-16 right-6 flex flex-col gap-4'>
+              <ul className='absolute  right-0 top-16 md:right-6 flex flex-col'>
                 <CartList 
                   cartList={cartList} 
                   setCartList={setCartList} 
@@ -288,6 +288,92 @@ export default function Tienda() {
             </div>
             
           </div>
+
+          {/* Barra de busqueda para móviles */}
+
+          <div className='w-full py-4 bg-slate-900 flex flex-col justify-between items-center sticky top-0 z-50 md:hidden'>
+
+            
+            {/* Barra de busqueda */}
+            <div className='flex rounded-lg py-2'>
+              <label className=' flex rounded-xl w-full' htmlFor="search">
+                <input className='block h-16 rounded-xl text-center text-xl ' id='search' type="text" placeholder="Buscar película" value={search} onChange={(e) => setSearch(e.target.value)} />
+                <button onClick={getMovies} className='bg-blue-500 hover:bg-blue-700 text-white font-bold  px-4 rounded-lg'>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    color='black'
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                    <path d="M21 21l-6 -6" />
+                  </svg>
+                </button>
+              </label>
+            </div>
+
+            {/* botones */}
+            <div className='bg-slate-900 w-screen flex flex-row items-center justify-around'>
+              {/* boton lista de favoritos */}
+              <div>
+                <button className='flex text-white text-center text-2xl p-6 border border-transparent hover:border hover:border-white'  onClick={() => showWishListBtn()}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="2"> <path d="M9 6l11 0"></path> <path d="M9 12l11 0"></path> <path d="M9 18l11 0"></path> <path d="M5 6l0 .01"></path> <path d="M5 12l0 .01"></path> <path d="M5 18l0 .01"></path> </svg> 
+                </button>
+                <ul className='absolute top-44 md:top-44 left-0 flex flex-col '>
+                  <Wishlist 
+                    showWishList={showWishList}
+                    wishList={wishList}
+                    setWishList={setWishList}
+                    setShowWishList={setShowWishList}
+                  />
+                </ul>
+                
+              </div>
+
+              {/* boton de carrito de compra */}
+              <div>
+                <button className=' flex text-white text-center text-2xl p-8 border border-transparent hover:border hover:border-white' onClick={() => showCartBtn()}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                    <path d="M17 17h-11v-14h-2" />
+                    <path d="M6 5l14 1l-1 7h-13" />
+                  </svg>
+                  <p className={`absolute top-24 right-16 text-white text-center text-2xl ${list !== 0 ? 'animate-pulse, text-yellow-400' : ''}`}>{list}</p>
+                </button>
+                
+                <ul className='absolute right-0 top-44 md:right-6 flex flex-col'>
+                  <CartList 
+                    cartList={cartList} 
+                    setCartList={setCartList} 
+                    showCart={showCart} 
+                    setShowCart={setShowCart} 
+                    setList={setList}
+                    />
+                </ul>
+                
+              </div>
+            </div>
+          </div>
+
+
+          {/* Fin de barra de busqueda para móviles */}
     
           <div  className={` ${movies.length !== 0 ? 'hidden' : ''}`}>
             <Home/>

@@ -4,11 +4,11 @@ import Swal from 'sweetalert2'
 
 export default function Home() {
     const urlAvengers = "https://www.omdbapi.com/?apikey=b73bd8ad&s=avengers&type=movie"
-    const urlAustinPowers = "https://www.omdbapi.com/?apikey=b73bd8ad&s=pirates&type=movie"
+    const urlSuperman = "https://www.omdbapi.com/?apikey=b73bd8ad&s=scary&type=movie"
 
     /* Estados para almacenar películas y el estado de carga o error */
     const [avengers, setAvengers] = useState([])
-    const [austin, setAustin] = useState([])
+    const [superman, setSuperman] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -36,7 +36,7 @@ export default function Home() {
 
     useEffect(() => {
         getFilms(urlAvengers, setAvengers) 
-        getFilms(urlAustinPowers, setAustin) 
+        getFilms(urlSuperman, setSuperman) 
     }, [])
 
     if (loading) {
@@ -52,20 +52,20 @@ export default function Home() {
             return (
                 <li key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
                     <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit object-cover rounded max-w-38' />
-                    <h2 className='text-white text-2xl font-bold text-center'>{movie.Title}</h2>
+                    <h2 className='text-white text-xl font-bold text-center m-2 truncate w-full '>{movie.Title}</h2>
                     <p className='text-white text-base'>{movie.Year}</p>
                 </li>
             )
         })
     }
 
-    // Función para renderizar las películas de Austin Powers
-    const renderAustin = () => {
-        return austin.map((movie) => {
+    // Función para renderizar las películas de Superman
+    const renderSuperman = () => {
+        return superman.map((movie) => {
             return (
                 <li key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
                     <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit object-cover rounded max-w-38' />
-                    <h2 className='text-white text-2xl font-bold text-center text-ellipsis w-48'>{movie.Title}</h2>
+                    <h2 className='text-white text-xl font-bold text-center text-ellipsis w-48'>{movie.Title}</h2>
                     <p className='text-white text-base'>{movie.Year}</p>
                 </li>
             )
@@ -79,9 +79,9 @@ export default function Home() {
             <ul className='grid grid-cols-2 gap-2 w-full md:grid-cols-4'>
                 {renderAvengers()}
             </ul>
-            <h2 className='text-white text-center text-2xl my-8'>¡Surca los Siete Mares con...!</h2>
+            <h2 className='text-white text-center text-2xl my-8'>¡Para morirse de risa!</h2>
             <ul className='grid grid-cols-2 gap-2 w-full md:grid-cols-4'>
-                {renderAustin()}
+                {renderSuperman()}
             </ul>
             <h1 className='text-6xl text-white text-center font-bold py-10'>¡Y si quieres más... Sólo dale a buscar y accede a la tienda!</h1>
         </>

@@ -24,7 +24,7 @@ export default function CartList({ cartList, setCartList, showCart, setShowCart,
         // Si el carrito está vacío, mostrar un mensaje de vacío
         if (cartList.length === 0) {
         return (
-            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96">
+            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
             <h1 className="text-white text-2xl font-semibold mb-2">Cesta</h1>
             <div className="flex justify-between">
                 <h2 className="text-white text-base font-semibold mb-2">Título</h2>
@@ -42,7 +42,7 @@ export default function CartList({ cartList, setCartList, showCart, setShowCart,
         console.log(totalPriceIVA)
 
         return (
-            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96">
+            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
             <h1 className="text-white text-2xl font-semibold mb-2">Cesta</h1>
             <div className="flex justify-between">
                 <h2 className="text-white text-base font-semibold mb-2">Título</h2>

@@ -14,7 +14,7 @@ export default function Wishlist({ showWishList, wishList, setWishList, setShowW
     if (showWishList) {
         if (wishList.length === 0) {
         return (
-            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 ">
+            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
                 <h1 className="text-white text-2xl font-semibold mb-2">Lista de deseos</h1>
                 <button onClick={emptyWishList} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4">Vaciar lista</button>
                 <div className="flex justify-between">
@@ -26,7 +26,7 @@ export default function Wishlist({ showWishList, wishList, setWishList, setShowW
         )
         } else {
         return (
-            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96">
+            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
                 <h1 className="text-white text-2xl font-semibold mb-2">Lista de deseos</h1>
                 <button onClick={emptyWishList} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4">Vaciar lista</button>
                 <div className="flex justify-between">

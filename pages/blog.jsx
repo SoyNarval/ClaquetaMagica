@@ -70,8 +70,7 @@ export default function Blog() {
   ]
 
   /* Declaramos todas las variables que necesitamos */
-
-
+  
   const [newPostTitle, setNewPostTitle] = useState("")
   const [newPostContent, setNewPostContent] = useState("")
   const [uploadPost, setUploadPost] = useState(POSTS)
@@ -131,7 +130,7 @@ export default function Blog() {
     return uploadPost.map((post) => {
       return (
         <ul> 
-          <li key={post.id}  className='border-solid border-4 border-gray-200 m-2 p-4 bg-gray-100 rounded-xl w-full'>
+          <li key={post.id}  className='border-solid border-4 border-gray-200 my-2 p-4 bg-gray-100 rounded-xl w-full'>
             <h3 className='text-2xl text-red-800 my-3'>{post.titulo}</h3>
             <p className='text-green-600'>{post.contenido}</p>
             <div className='flex flex-row gap-4 items-center my-2'>
@@ -157,7 +156,6 @@ export default function Blog() {
       <Header/>
       <div className='bg-gradient-to-b from-slate-900 to-slate-700 p-3 md:h-screen'>
 
-
         <h1 className="text-white text-5xl font-bold text-center my-4 p-10 w-full border border-gray-800 border-solid rounded-xl">Nuestro Blog</h1>
         <h2 className='text-white text-3xl m-8 text-center border-b p-2'>Entradas recientes</h2>
 
@@ -169,8 +167,7 @@ export default function Blog() {
             </ul>
           </article>
 
-
-          <section className='w-full h-full'>
+          <section className='w-full h-full flex flex-col gap-8'>
             <h2 className='text-white text-3xl m-8 text-center border-b p-2'>Crear entrada</h2>
             <div className='flex flex-col gap-8 w-full'>
               <label for="title">
@@ -182,7 +179,6 @@ export default function Blog() {
               <button onClick={handleUploadPost} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Enviar</button>
             </div>
           </section>
-
 
         </div>
       </div>
