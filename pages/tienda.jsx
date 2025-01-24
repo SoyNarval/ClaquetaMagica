@@ -214,7 +214,7 @@ export default function Tienda() {
             
             {/* boton lista de favoritos */}
             <div>
-              <button className='flex text-white text-center text-2xl p-6 border border-transparent hover:border hover:border-white'  onClick={() => showWishListBtn()}>
+              <button className='flex text-white text-center text-2xl p-5 border border-transparent hover:border hover:border-white'  onClick={() => showWishListBtn()}>
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="36" height="36" stroke-width="2"> <path d="M9 6l11 0"></path> <path d="M9 12l11 0"></path> <path d="M9 18l11 0"></path> <path d="M5 6l0 .01"></path> <path d="M5 12l0 .01"></path> <path d="M5 18l0 .01"></path> </svg> 
               </button>
               <ul className='absolute top-14 md:top-16 md:left-4 flex flex-col '>

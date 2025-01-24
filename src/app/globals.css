@@ -16,6 +16,10 @@
   }
 }
 
+html{
+  background: linear-gradient(to top, #1e293b, #374151);
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -25,3 +29,4 @@ body {
 input{
   color: black;
 }
+

@@ -132,12 +132,12 @@ export default function Blog() {
         <ul> 
           <li key={post.id}  className='border-solid border-4 border-gray-200 my-2 p-4 bg-gray-100 rounded-xl w-full'>
             <h3 className='text-2xl text-red-800 my-3'>{post.titulo}</h3>
-            <p className='text-green-600'>{post.contenido}</p>
+            <p className='text-slate-900'>{post.contenido}</p>
             <div className='flex flex-row gap-4 items-center my-2'>
               <button className='flex justify-center items-center hover:animate-pulse' onClick={() => handleLikeClick(post)}>
               ❤️
               </button>
-              <p>({post.likes})</p>
+              <p className='text-black'>({post.likes})</p>
             </div>
             
             <p className='text-red-600'>{post.fecha}</p>
@@ -161,7 +161,7 @@ export default function Blog() {
 
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-full md:h-1/2'>
 
-          <article className="bg-white shadow-md rounded-lg p-4 mb-4 overflow-y-scroll max-h-lg">
+          <article className="bg-white shadow-md rounded-lg p-4 max-md:mb-4 overflow-y-scroll max-h-lg">
             <ul className='md:h-dvh h-fit w-full'>
               {renderPosts()}
             </ul>
@@ -174,7 +174,7 @@ export default function Blog() {
                 <input className='h-10 w-full border rounded-md shadow-sm p-2' id='title' type="text" placeholder="Titulo" value={newPostTitle} onChange={handleTitleChange} />
               </label>
               <label for="content">
-                <textarea className='min-h-20 w-full border rounded-md shadow-sm p-2 md:h-fit' id='content' rows="4" placeholder="Deja tu comentario" value={newPostContent} onChange={handleContentChange} />
+                <textarea className='text-black min-h-20 w-full border rounded-md shadow-sm p-2 md:h-fit' id='content' rows="4" placeholder="Deja tu comentario" value={newPostContent} onChange={handleContentChange} />
               </label>
               <button onClick={handleUploadPost} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>Enviar</button>
             </div>
