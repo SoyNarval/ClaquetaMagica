@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-export default function Wishlist({ showWishList, wishList, setWishList, setShowWishList}) {
+export default function Wishlist({ showWishList, wishList, setWishList, setShowWishList }) {
 
     const emptyWishList = () => {
         localStorage.removeItem('wishList')

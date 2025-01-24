@@ -41,6 +41,7 @@ export default function Tienda() {
 
   const url = `https://www.omdbapi.com/?apikey=b73bd8ad&s=${search}`
 
+
   const clearMovies = () => {
     setMovies([]); // Vaciar el array de películas
   };
@@ -82,7 +83,6 @@ export default function Tienda() {
     const totalItems = cartList.reduce((total, item) => total + item.quantity, 1);
     setList(totalItems);
   }
-      
 
   const getMovies = () => {
     if(search){
@@ -131,10 +131,10 @@ export default function Tienda() {
                 <p className='text-white text-center text-2xl my-4'>{movie.price}€</p>
 
                 {/* Votón para añadir a la Lista */}
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full text-2xl' onClick={() => fillWishList(movie)} tittle="Añadir a tu lista" >+</button>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full text-2xl' onClick={() => fillWishList(movie)} title="Añadir a tu lista" >+</button>
                 
                 {/* Botón para comprar */}
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>fillCartList(movie)}>
+                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>fillCartList(movie)} title='Comprar'>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="24"
@@ -207,6 +207,13 @@ export default function Tienda() {
     setShowCart(!showCart)
     setShowWishList(false)
   }
+
+  // Re render de las películas
+  useEffect(() => {
+    if (search) {
+      getMovies(); // Esto se disparará cuando search cambie
+    }
+  }, [search]);
 
   return (
     <>
@@ -381,7 +388,8 @@ export default function Tienda() {
     
           <div  className={` ${movies.length !== 0 ? 'hidden' : ''}`}>
             <Home
-
+              setSearch={setSearch}
+              renderMovies={renderMovies}
             />
           </div>
 
