@@ -39,6 +39,8 @@ export default function Tienda() {
   const [wishList, setWishList] = useState([])
   const [showWishList, setShowWishList] = useState(false)
 
+  const [filter, setFilter] = useState(true)
+
   const url = `https://www.omdbapi.com/?apikey=b73bd8ad&s=${search}`
 
 
@@ -211,9 +213,9 @@ export default function Tienda() {
   // Re render de las películas
   useEffect(() => {
     if (search) {
-      getMovies(); // Esto se disparará cuando search cambie
+      getMovies();
     }
-  }, [search]);
+  }, [filter])
 
   return (
     <>
@@ -390,6 +392,8 @@ export default function Tienda() {
             <Home
               setSearch={setSearch}
               renderMovies={renderMovies}
+              filter={filter}
+              setFilter={setFilter}
             />
           </div>
 
