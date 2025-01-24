@@ -50,7 +50,7 @@ export default function Home() {
     const renderAvengers = () => {
         return avengers.map((movie) => {
             return (
-                <li key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
+                <li onClick={ () => Swal.fire({ title: movie.Title, text: "Puedes buscarla desde el buscador con su nombre en inglés" , icon: 'info' }) } key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
                     <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit object-cover rounded max-w-38' />
                     <h2 className='text-white text-xl font-bold text-center m-2 truncate w-full '>{movie.Title}</h2>
                     <p className='text-white text-base'>{movie.Year}</p>
@@ -63,7 +63,7 @@ export default function Home() {
     const renderSuperman = () => {
         return superman.map((movie) => {
             return (
-                <li key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
+                <li  onClick={ () => Swal.fire({ title: movie.Title, text: "Puedes buscarla desde el buscador con su nombre en inglés" , icon: 'info' }) } key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full'>
                     <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit object-cover rounded max-w-38' />
                     <h2 className='text-white text-xl font-bold text-center text-ellipsis w-48'>{movie.Title}</h2>
                     <p className='text-white text-base'>{movie.Year}</p>

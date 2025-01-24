@@ -41,6 +41,10 @@ export default function Tienda() {
 
   const url = `https://www.omdbapi.com/?apikey=b73bd8ad&s=${search}`
 
+  const clearMovies = () => {
+    setMovies([]); // Vaciar el array de películas
+  };
+
   /* Función para llenar el carro */
 
   useEffect(() => {
@@ -97,7 +101,7 @@ export default function Tienda() {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
-                text: '¡Sin resultados, prueba de nuevo!'
+                text: '¡Sin resultados, prueba de nuevo con una palabra en inglés!'
             })
             }
         })
@@ -206,7 +210,7 @@ export default function Tienda() {
 
   return (
     <>
-      <Header/>
+      <Header clearMovies={clearMovies}/>
       <div className='bg-black min-h-screen'>
         
           {/* barra de busqueda y compra*/}
@@ -376,7 +380,9 @@ export default function Tienda() {
           {/* Fin de barra de busqueda para móviles */}
     
           <div  className={` ${movies.length !== 0 ? 'hidden' : ''}`}>
-            <Home/>
+            <Home
+
+            />
           </div>
 
           <div className={` ${movies.length === 0 ? 'hidden' : ''}`}>
