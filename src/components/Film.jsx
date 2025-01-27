@@ -2,7 +2,7 @@ import "../app/globals.css"
 
 export default function Film({ movie }) {
     return (
-        <div className="bg-black h-screen justify-around flex flex-col items-center max-md:mb-4"> 
+        <div className="bg-black justify-around flex flex-col items-center max-md:mb-4"> 
             <h2 className="text-white text-3xl font-bold text-center">{movie.Title}</h2>
             <p className="text-white text-lg m-4">{movie.Year}</p>
             <div className="max-md:w-4/5 h-1/2 flex max-md:flex-col justify-center items-center rounded-lg shadow-lg m-4 md:h-fit ">
