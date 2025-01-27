@@ -8,6 +8,7 @@ import Home from '../src/components/Home'
 import Film from '../src/components/Film'
 import Wishlist from '../src/components/Wishlist'
 import CartList from '../src/components/CartList'
+import Loader from '../src/components/Loader'
 
 /* Generador de confetti */
 export const confettiGenerator = (e) => {
@@ -127,40 +128,39 @@ export default function Tienda() {
     return movies.map((movie) => {
         return (
             <ul key={movie.imdbID} className='m-4 '>
-            <li className=' bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-row gap-4 items-center justify-around max-w-xl h-full'>
-                <div>
-                <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit  object-cover m-2 cursor-pointer hover:rotate-2 hover:scale-110 hover:brightness-125 transition-all duration-300' onClick={() => chooseFilm(movie)} />
-                <h3 className='text-xl font-bold text-gray-200 text-center max-w-60'>{movie.Title}</h3>
-                <p className='text-gray-400 text-center'>{movie.Year}</p>
-                </div>
-                <div className='flex flex-col gap-8 items-center m-4'>
-                <p className='text-white text-center text-2xl my-4'>{movie.price}€</p>
+              <li className=' bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-row gap-4 items-center justify-around max-w-xl h-full'>
+                  <div>
+                  <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit  object-cover m-2 cursor-pointer hover:rotate-2 hover:scale-110 hover:brightness-125 transition-all duration-300' onClick={() => chooseFilm(movie)} />
+                  <h3 className='text-xl font-bold text-gray-200 text-center max-w-60'>{movie.Title}</h3>
+                  <p className='text-gray-400 text-center'>{movie.Year}</p>
+                  </div>
+                  <div className='flex flex-col gap-8 items-center m-4'>
+                  <p className='text-white text-center text-2xl my-4'>{movie.price}€</p>
 
-                {/* Votón para añadir a la Lista */}
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full text-2xl' onClick={() => fillWishList(movie)} title="Añadir a tu lista" >+</button>
-                
-                {/* Botón para comprar */}
-                <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>fillCartList(movie)} title='Comprar'>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      >
-                      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                      <path d="M17 17h-11v-14h-2" />
-                      <path d="M6 5l14 1l-1 7h-13" />
-                    </svg>
-                </button>
-                </div>
-                
-            </li>
+                  {/* Votón para añadir a la Lista */}
+                  <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-5 rounded-full text-2xl' onClick={() => fillWishList(movie)} title="Añadir a tu lista" >+</button>
+                  
+                  {/* Botón para comprar */}
+                  <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>fillCartList(movie)} title='Comprar'>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        >
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                      </svg>
+                  </button>
+                  </div>
+              </li>
             </ul>
         
         )
@@ -405,6 +405,7 @@ export default function Tienda() {
               setFilter={setFilter}
             />
           </div>
+
 
           <div className={` ${movies.length === 0 || film ? 'hidden' : ''}`}>
             <h1 className='text-6xl text-white text-center font-bold my-6'>Tienda</h1>

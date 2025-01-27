@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import "../app/globals.css"
 import Swal from 'sweetalert2'
+import Loader from './Loader'
 
 export default function Home({setSearch, renderMovies, filter, setFilter}) {
     const urlAvengers = "https://www.omdbapi.com/?apikey=b73bd8ad&s=avengers&type=movie"
@@ -41,7 +42,7 @@ export default function Home({setSearch, renderMovies, filter, setFilter}) {
     }, [])
 
     if (loading) {
-        return <div className="text-white text-center">Cargando...</div>
+        <Loader/>
     }
     if (error) {
         return <div className="text-white text-center">Error: {error}</div>

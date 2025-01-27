@@ -13,15 +13,17 @@ export default {
         foreground: "var(--foreground)",
       },animation: {
         'infinite-scroll': 'infinite-scroll 25s linear infinite',
+        'loader': 'loader 1s linear infinite',
       },
       keyframes: {
         'infinite-scroll': {
           from: { transform: 'translateX(0)' },
           to: { transform: 'translateX(-100%)' },
         },
-        'twinkle': {
-          
-        },
+        'loader': {
+          '0%': { transform: 'rotate(0deg)' },
+          '100%':{ transform: 'rotate(360deg)' },
+        }
       },
     },
   },
