@@ -36,54 +36,54 @@ export default function CartList({ cartList, setCartList, showCart, setShowCart,
         )
         } else {
         
-        // Si el carrito tiene películas, mostramos la lista, cantidad y precio total
-        const totalPrice = cartList.reduce((total, movie) => total + (movie.price * movie.quantity), 0)
-        const totalPriceIVA = totalPrice * 0.21
-        console.log(totalPriceIVA)
+            // Si el carrito tiene películas, mostramos la lista, cantidad y precio total
+            const totalPrice = cartList.reduce((total, movie) => total + (movie.price * movie.quantity), 0)
+            const totalPriceIVA = totalPrice * 0.21
+            console.log(totalPriceIVA)
 
-        return (
-            <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
-            <h1 className="text-white text-2xl font-semibold mb-2">Cesta</h1>
-            <div className="flex justify-between">
-                <h2 className="text-white text-base font-semibold mb-2">Título</h2>
-                <h2 className="text-white text-base font-semibold mb-2">Precio</h2>
-                <h2 className="text-white text-base font-semibold mb-2 ">Cantidad</h2>
-            </div>
+            return (
+                <div className="flex flex-col bg-gray-800 text-white p-4 my-3 rounded-lg shadow-lg w-96 max-md:w-screen">
+                <h1 className="text-white text-2xl font-semibold mb-2">Cesta</h1>
+                <div className="flex justify-between">
+                    <h2 className="text-white text-base font-semibold mb-2">Título</h2>
+                    <h2 className="text-white text-base font-semibold mb-2">Precio</h2>
+                    <h2 className="text-white text-base font-semibold mb-2 ">Cantidad</h2>
+                </div>
 
-            {/* Lista a renderizar */}
-            <ul className='max-h-72 overflow-y-scroll'>
-                {cartList.map((movie, index) => (
-                <li key={movie.imdbID}>
-                    <div className="flex flex-row gap-4 items-center justify-between border-b border-gray-950">
-                    <h3 className="text-base text-red-800 font-semibold max-w-36 truncate px-0">{movie.Title}</h3>
-                    <p>
-                        <span className="text-green-600">{movie.price}€</span>
+                {/* Lista a renderizar */}
+                <ul className='max-h-72 overflow-y-scroll'>
+                    {cartList.map((movie, index) => (
+                    <li key={movie.imdbID}>
+                        <div className="flex flex-row gap-4 items-center justify-between border-b border-gray-950">
+                        <h3 className="text-base text-red-800 font-semibold max-w-36 truncate px-0">{movie.Title}</h3>
+                        <p>
+                            <span className="text-green-600">{movie.price}€</span>
+                        </p>
+                        <div className='flex justify-center items-center'>
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={() => decreaseQuantity(movie)}>-</button>
+                            <p>{movie.quantity}</p>
+                            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={() => increaseQuantity(movie)}>+</button>
+                        </div>
+                        </div>
+                    </li>
+                    ))}
+                </ul>
+                <div className="flex flex-col mt-4 text-lg font-bold">
+                    <di className="flex justify-between">
+                    <p className="text-white">
+                    Total: <span className="text-green-600">{totalPrice}€</span>
                     </p>
-                    <div className='flex justify-center items-center'>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={() => decreaseQuantity(movie)}>-</button>
-                        <p>{movie.quantity}</p>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={() => increaseQuantity(movie)}>+</button>
-                    </div>
-                    </div>
-                </li>
-                ))}
-            </ul>
-            <div className="flex flex-col mt-4 text-lg font-bold">
-                <di className="flex justify-between">
-                <p className="text-white">
-                Total: <span className="text-green-600">{totalPrice}€</span>
-                </p>
-                <p className="text-white">
-                Total+IVA: <span className="text-green-600">{totalPrice + totalPriceIVA}€</span>
-                </p>
-                </di>
-                
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={handleCheckout}>
-                Comprar
-                </button>
-            </div>
-            </div>
-        )
+                    <p className="text-white">
+                    Total+IVA: <span className="text-green-600">{totalPrice + totalPriceIVA}€</span>
+                    </p>
+                    </di>
+                    
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" onClick={handleCheckout}>
+                    Comprar
+                    </button>
+                </div>
+                </div>
+            )
         }
     }
     }

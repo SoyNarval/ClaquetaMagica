@@ -4,9 +4,10 @@ import "../src/app/globals.css"
 import Swal from 'sweetalert2'
 import confetti from 'canvas-confetti'
 import Header from '../src/components/Header'
+import Home from '../src/components/Home'
+import Film from '../src/components/Film'
 import Wishlist from '../src/components/Wishlist'
 import CartList from '../src/components/CartList'
-import Home from '../src/components/Home'
 
 /* Generador de confetti */
 export const confettiGenerator = (e) => {
@@ -41,11 +42,14 @@ export default function Tienda() {
 
   const [filter, setFilter] = useState(true)
 
+  const [film, setFilm] = useState(false)
+  const [chosenFilm, setChosenFilm] = useState(false)
+
   const url = `https://www.omdbapi.com/?apikey=b73bd8ad&s=${search}`
 
 
   const clearMovies = () => {
-    setMovies([]); // Vaciar el array de películas
+    setMovies([]);
   };
 
   /* Función para llenar el carro */
@@ -125,7 +129,7 @@ export default function Tienda() {
             <ul key={movie.imdbID} className='m-4 '>
             <li className=' bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-row gap-4 items-center justify-around max-w-xl h-full'>
                 <div>
-                <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit  object-cover m-2 ' />
+                <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit  object-cover m-2 cursor-pointer hover:rotate-2 hover:scale-110 hover:brightness-125 transition-all duration-300' onClick={() => chooseFilm(movie)} />
                 <h3 className='text-xl font-bold text-gray-200 text-center max-w-60'>{movie.Title}</h3>
                 <p className='text-gray-400 text-center'>{movie.Year}</p>
                 </div>
@@ -138,20 +142,20 @@ export default function Tienda() {
                 {/* Botón para comprar */}
                 <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' onClick={()=>fillCartList(movie)} title='Comprar'>
                     <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    >
-                    <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
-                    <path d="M17 17h-11v-14h-2" />
-                    <path d="M6 5l14 1l-1 7h-13" />
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      >
+                      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 17h-11v-14h-2" />
+                      <path d="M6 5l14 1l-1 7h-13" />
                     </svg>
                 </button>
                 </div>
@@ -161,7 +165,14 @@ export default function Tienda() {
         
         )
     })
-    }
+  }
+  
+  const chooseFilm = (movie) => {
+    setFilm(true)
+    setMovies([])
+    setSearch(movie.Title)
+    setChosenFilm(movie)
+  }
 
   /* Recuperar carrito y wishlist desde localStorage */
   useEffect(() => {
@@ -388,7 +399,7 @@ export default function Tienda() {
 
           {/* Fin de barra de busqueda para móviles */}
     
-          <div  className={` ${movies.length !== 0 ? 'hidden' : ''}`}>
+          <div  className={` ${movies.length !== 0 || film ? 'hidden' : ''}`}>
             <Home
               setSearch={setSearch}
               renderMovies={renderMovies}
@@ -397,14 +408,47 @@ export default function Tienda() {
             />
           </div>
 
-          <div className={` ${movies.length === 0 ? 'hidden' : ''}`}>
+          <div className={` ${movies.length === 0 || film ? 'hidden' : ''}`}>
             <h1 className='text-6xl text-white text-center font-bold my-6'>Tienda</h1>
             <h2 className={` text-2xl font-bold ty-4 text-center text-white`}>Resultados</h2> 
+            <ul className='md:grid md:grid-cols-4 md:gap-4 w-full'>
+              {renderMovies()}
+            </ul>
           </div>
 
-          <ul className='md:grid md:grid-cols-4 md:gap-4 w-full'>
-            {renderMovies()}
-          </ul>
+
+          <div className={` ${!film ? 'hidden' : ''}`}>
+            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4' onClick={() => setFilm(false)}>&larr; Volver</button>
+            <div className='flex justify-center items-center max-md:flex-col-reverse h-2/3'>
+              <div className="justify-center items-center flex gap-4 m-4 h-full md:flex-col">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" title="Comprar" onClick={() => fillCartList(chosenFilm)}>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        >
+                        <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                        <path d="M17 17h-11v-14h-2" />
+                        <path d="M6 5l14 1l-1 7h-13" />
+                    </svg>
+                </button>
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full my-4"  title="Añadir a tu lista" onClick={() => fillWishList(chosenFilm)}>
+                    +
+                </button>
+              </div>
+              <Film
+                movie={chosenFilm}
+                setFilm={setFilm}
+              />
+            </div>
+          </div>
       </div>
     </>
   )

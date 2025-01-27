@@ -4,11 +4,11 @@ import Swal from 'sweetalert2'
 
 export default function Home({setSearch, renderMovies, filter, setFilter}) {
     const urlAvengers = "https://www.omdbapi.com/?apikey=b73bd8ad&s=avengers&type=movie"
-    const urlSuperman = "https://www.omdbapi.com/?apikey=b73bd8ad&s=scary&type=movie"
+    const urlScary = "https://www.omdbapi.com/?apikey=b73bd8ad&s=scary&type=movie"
 
     /* Estados para almacenar películas y el estado de carga o error */
     const [avengers, setAvengers] = useState([])
-    const [superman, setSuperman] = useState([])
+    const [scary, setScary] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
 
@@ -37,7 +37,7 @@ export default function Home({setSearch, renderMovies, filter, setFilter}) {
 
     useEffect(() => {
         getFilms(urlAvengers, setAvengers) 
-        getFilms(urlSuperman, setSuperman) 
+        getFilms(urlScary, setScary) 
     }, [])
 
     if (loading) {
@@ -65,9 +65,9 @@ export default function Home({setSearch, renderMovies, filter, setFilter}) {
         })
     }
 
-    // Función para renderizar las películas de Superman
-    const renderSuperman = () => {
-        return superman.map((movie) => {
+    // Función para renderizar las películas de Scary
+    const renderScary = () => {
+        return scary.map((movie) => {
             return (
                 <li  onClick={() => filterMovies("scary")} key={movie.imdbID} className='m-4 bg-gradient-to-b from-slate-900 to-slate-700 border-2 border-white border-solid rounded-lg flex flex-col gap-4 items-center justify-around my-4 w-2xl h-full cursor-pointer' title={movie.Title}>
                     <img src={movie.Poster} alt={movie.Title} className='w-60 h-fit object-cover rounded max-w-38' />
@@ -91,7 +91,7 @@ export default function Home({setSearch, renderMovies, filter, setFilter}) {
             </ul>
             <h2 className='text-white text-center text-2xl my-8'>¡Para morirse de risa!</h2>
             <ul className='grid grid-cols-2 gap-2 w-full md:grid-cols-4'>
-                {renderSuperman()}
+                {renderScary()}
             </ul>
             <h1 className='text-6xl text-white text-center font-bold py-10'>¡Y si quieres más... Sólo dale a buscar y accede a la tienda!</h1>
             
