@@ -416,7 +416,7 @@ export default function Tienda() {
 
 
           <div className={` ${!film ? 'hidden' : ''}`}>
-            <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4' onClick={() => setFilm(false)}>&larr; Volver</button>
+            <button className='sticky top-24 max-md:top-52  z-50 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4' onClick={() => setFilm(false)}>&larr; Volver</button>
             <div className='flex justify-center items-center max-md:flex-col-reverse h-2/3'>
               <div className="justify-center items-center flex gap-4 m-4 h-full md:flex-col">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full m-4" title="Comprar" onClick={() => fillCartList(chosenFilm)}>
