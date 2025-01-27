@@ -169,8 +169,6 @@ export default function Tienda() {
   
   const chooseFilm = (movie) => {
     setFilm(true)
-    setMovies([])
-    setSearch(movie.Title)
     setChosenFilm(movie)
   }
 
